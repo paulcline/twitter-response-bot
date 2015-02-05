@@ -48,7 +48,7 @@ def main():
       
       # Craft response
       response = "@%s %s" % (tweet.user.screen_name, config["response"])
-      twitterApi.PostUpdate(response, in_reply_to_status="%s" % tweet.id)
+      twitterApi.PostUpdate(response, in_reply_to_status_id="%s" % tweet.id)
     
     with open(config_path, "w") as f:
       
