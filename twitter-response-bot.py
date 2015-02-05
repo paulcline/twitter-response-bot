@@ -34,12 +34,21 @@ def main():
   try:
 
     highest_id = None
-    tweets = twitterApi.GetSearch(term='%s' % config["search_phrase"], result_type="recent", since_id="%s" % config["twitter"]["since_id"])
+    
+    search_kwargs = dict()
+    search_kwargs["term"] = config["search_phrase"]
+    search_kwargs["result_type"] = "recent"
+    try:
+      search_kwargs["since_id"] = config["twitter"]["since_id"]
+    except:
+      pass
+
+    tweets = twitterApi.GetSearch(**search_kwargs)
 
     for tweet in tweets:
       
       # Don't respond to retweets
-      if tweet.retweeted == True:
+      if tweet.retweeted_status:
         continue
       
       # Track the most recent tweet (highest id)
