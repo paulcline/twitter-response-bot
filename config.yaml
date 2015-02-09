@@ -1,5 +1,6 @@
 response: Bot Response
 search_phrase: Term to search for
+abort_phrase: Ignore tweets with this string
 twitter: { 
   access_token_key: your_access_token_key, 
   access_token_secret: your_access_token_secret,
