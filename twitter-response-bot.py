@@ -46,6 +46,13 @@ def main():
     tweets = twitterApi.GetSearch(**search_kwargs)
 
     for tweet in tweets:
+            
+      # Skip tweets that contain our abort phrase
+      try:
+        if config["abort_phrase"] in tweet.text.lower():
+          continue
+      except:
+        pass
       
       # Don't respond to retweets
       if tweet.retweeted_status:
